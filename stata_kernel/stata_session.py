@@ -300,9 +300,9 @@ class StataSession():
 
         # Stata issues a note when saving graphs on disk, including the path.
         # The beginning of this note will be captured by g_exp.
-        # Stata <17 reports this note within parantheses,
-        # Stata  17 reprts this note without parantheses -> hence the \(?
-        # The minimum linesize in Stata is 40 characters
+        #     - Stata < 17 reports this note within parentheses,
+        #     - Stata   17 reports this note without, hence the \(?
+        # The minimum linesize in Stata is 40 characters.
         g_exp = r'\(?file {}'.format(self.cache_dir_str[:34])
 
         more = r'^--more--'
@@ -417,7 +417,7 @@ class StataSession():
         # to the `(file ... written)` of Stata < 16 (both captured by g_exp)
         # distinguish them by looking at the end of the output
         regex = r'^\((note: )?file {}/graph\d+\.({}) not found\)'.format(
-                    self.cache_dir_str, '|'.join(self.kernel.graph_formats))
+            self.cache_dir_str, '|'.join(self.kernel.graph_formats))
         if re.search(regex, res):
             return None
         else:
