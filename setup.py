@@ -59,6 +59,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/kylebarron/stata_kernel',
-    version='1.13.0',
+    version='1.14.0',
     include_package_data=True
 )
